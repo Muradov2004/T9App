@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Material.Icons" Version="2.0.5" />
+    <PackageReference Include="Material.Icons.WPF" Version="2.0.0" />
   </ItemGroup>
 
 </Project>

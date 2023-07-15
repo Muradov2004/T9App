@@ -4,8 +4,65 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:T9App"
+        xmlns:materialIcons="clr-namespace:Material.Icons.WPF;assembly=Material.Icons.WPF"
         mc:Ignorable="d"
         Title="MainWindow" Height="550" Width="300">
-    <Grid>
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="White"/>
+        </Style>
+    </Window.Resources>
+    <Grid Background="LightGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1.8*" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Column="0" Margin="10" FontSize="20" Background="White"/>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="2*" />
+            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Height="20" Width="50" Content="C" VerticalAlignment="Bottom" Margin="10"/>
+                <UniformGrid Grid.Column="1" Columns="3">
+                    <Rectangle/>
+                    <Button Content="{materialIcons:MaterialIconExt Kind=ArrowUp}"/>
+                    <Rectangle/>
+                    <Button Content="{materialIcons:MaterialIconExt Kind=ArrowLeft}"/>
+                    <Rectangle/>
+                    <Button Content="{materialIcons:MaterialIconExt Kind=ArrowRight}"/>
+                    <Rectangle/>
+                    <Button Content="{materialIcons:MaterialIconExt Kind=ArrowDown}"/>
+                    <Rectangle/>
+                </UniformGrid>
+                <Button Grid.Column="2" Height="20" Width="50" Content="Add" VerticalAlignment="Bottom" Margin="10"/>
+            </Grid>
+            <UniformGrid Grid.Row="2" Columns="3">
+                <UniformGrid.Resources>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Margin" Value="3"/>
+                        <Setter Property="Background" Value="White"/>
+                    </Style>
+                </UniformGrid.Resources>
+                <Button/>
+                <Button/>
+                <Button/>
+                <Button/>
+                <Button/>
+                <Button/>
+                <Button/>
+                <Button/>
+                <Button/>
+                <Button/>
+                <Button/>
+                <Button/>
+            </UniformGrid>
+        </Grid>
     </Grid>
 </Window>
