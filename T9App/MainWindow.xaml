@@ -102,13 +102,13 @@
                     </StackPanel>
                 </Button>
                 <Button Content="*" Click="Button_Click"/>
-                <Button>
+                <Button Click="Button_Click">
                     <Grid>
                         <TextBlock Text="0" HorizontalAlignment="Center"/>
                         <Label Content="{materialIcons:MaterialIconExt Size=40,Kind=KeyboardSpace}"/>
                     </Grid>
                 </Button>
-                <Button Content="#"/>
+                <Button Content="#" Click="Button_Click"/>
             </UniformGrid>
         </Grid>
     </Grid>

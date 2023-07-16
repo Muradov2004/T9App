@@ -42,8 +42,23 @@ namespace T9App
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Button clickedButton = (Button)sender;
-            string buttonText = clickedButton.Content.ToString();
-            inputBuffer.Append(buttonText);
+            string buttonText = clickedButton.Content.ToString()!;
+
+
+            if (clickedButton.Content is StackPanel stackPanel)
+            {
+                // Get the first child of the StackPanel, which is the TextBlock
+                if (stackPanel.Children.Count > 0 && stackPanel.Children[0] is TextBlock textBlock)
+                {
+                    // Access the Text property of the first TextBlock
+                    buttonText = textBlock.Text;
+
+                    inputBuffer.Append(buttonText);
+                }
+            }
+            else
+                inputBuffer.Append(buttonText);
+
 
             //// Check if the button represents a number or a letter
             //if (char.IsDigit(buttonText[0]))
@@ -74,7 +89,8 @@ namespace T9App
 
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
-            txtInput.Text = string.Empty;
+            inputBuffer.Clear();
+            UpdateInputDisplay();
         }
     }
 }
