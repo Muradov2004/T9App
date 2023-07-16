@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:T9App"
         xmlns:materialIcons="clr-namespace:Material.Icons.WPF;assembly=Material.Icons.WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="550" Width="300">
+        Title="MainWindow" Height="600" Width="300">
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="Background" Value="White"/>
@@ -17,7 +17,7 @@
             <RowDefinition Height="1*" />
             <RowDefinition Height="1.8*" />
         </Grid.RowDefinitions>
-        <TextBlock Grid.Column="0" Margin="10" FontSize="20" Background="White"/>
+        <TextBlock Grid.Column="0" Margin="10" FontSize="20" Background="White" TextWrapping="Wrap"/>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*" />
@@ -48,20 +48,21 @@
                     <Style TargetType="{x:Type Button}">
                         <Setter Property="Margin" Value="3"/>
                         <Setter Property="Background" Value="White"/>
+                        <Setter Property="FontSize" Value="20"/>
                     </Style>
                 </UniformGrid.Resources>
-                <Button/>
-                <Button/>
-                <Button/>
-                <Button/>
-                <Button/>
-                <Button/>
-                <Button/>
-                <Button/>
-                <Button/>
-                <Button/>
-                <Button/>
-                <Button/>
+                <Button Content="1"/>
+                <Button Content="  2&#xA;ABC"/>
+                <Button Content="  3&#xA;DEF"/>
+                <Button Content="  4&#xA;GHI"/>
+                <Button Content="  5&#xA;JKL"/>
+                <Button Content="  6&#xA;MNO"/>
+                <Button Content="  7&#xA;PRS"/>
+                <Button Content="  8&#xA;TUV"/>
+                <Button Content="  9&#xA;WXY"/>
+                <Button Content="*"/>
+                <Button Content="0"/>
+                <Button Content="#"/>
             </UniformGrid>
         </Grid>
     </Grid>
