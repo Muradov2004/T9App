@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:T9App"
         xmlns:materialIcons="clr-namespace:Material.Icons.WPF;assembly=Material.Icons.WPF"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="MainWindow" Height="600" Width="300">
     <Window.Resources>
         <Style TargetType="Button">
@@ -17,7 +18,7 @@
             <RowDefinition Height="1*" />
             <RowDefinition Height="1.8*" />
         </Grid.RowDefinitions>
-        <TextBlock Grid.Column="0" Margin="10" FontSize="20" Background="White" TextWrapping="Wrap"/>
+        <TextBlock x:Name="txtInput" Grid.Column="0" Margin="10" FontSize="20" Background="White" TextWrapping="Wrap" />
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*" />
@@ -29,16 +30,16 @@
                     <ColumnDefinition Width="2*" />
                     <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Height="20" Width="50" Content="C" VerticalAlignment="Bottom" Margin="10"/>
+                <Button Grid.Column="0" Height="20" Width="50" Content="C" VerticalAlignment="Bottom" Margin="10" Click="ClearButton_Click"/>
                 <UniformGrid Grid.Column="1" Columns="3">
                     <Rectangle/>
-                    <Button Content="{materialIcons:MaterialIconExt Kind=ArrowUp}"/>
+                    <Button Content="{materialIcons:MaterialIconExt Kind=KeyboardArrowUp}"/>
                     <Rectangle/>
-                    <Button Content="{materialIcons:MaterialIconExt Kind=ArrowLeft}"/>
+                    <Button Content="{materialIcons:MaterialIconExt Kind=KeyboardArrowLeft}"/>
                     <Rectangle/>
-                    <Button Content="{materialIcons:MaterialIconExt Kind=ArrowRight}"/>
+                    <Button Content="{materialIcons:MaterialIconExt Kind=KeyboardArrowRight}"/>
                     <Rectangle/>
-                    <Button Content="{materialIcons:MaterialIconExt Kind=ArrowDown}"/>
+                    <Button Content="{materialIcons:MaterialIconExt Kind=KeyboardArrowDown}"/>
                     <Rectangle/>
                 </UniformGrid>
                 <Button Grid.Column="2" Height="20" Width="50" Content="Add" VerticalAlignment="Bottom" Margin="10"/>
@@ -51,17 +52,62 @@
                         <Setter Property="FontSize" Value="20"/>
                     </Style>
                 </UniformGrid.Resources>
-                <Button Content="1"/>
-                <Button Content="  2&#xA;ABC"/>
-                <Button Content="  3&#xA;DEF"/>
-                <Button Content="  4&#xA;GHI"/>
-                <Button Content="  5&#xA;JKL"/>
-                <Button Content="  6&#xA;MNO"/>
-                <Button Content="  7&#xA;PRS"/>
-                <Button Content="  8&#xA;TUV"/>
-                <Button Content="  9&#xA;WXY"/>
-                <Button Content="*"/>
-                <Button Content="0"/>
+                <Button Content="1" Click="Button_Click"/>
+                <Button Click="Button_Click">
+                    <StackPanel>
+                        <TextBlock Text="2" HorizontalAlignment="Center"/>
+                        <TextBlock Text="ABC"/>
+                    </StackPanel>
+                </Button>
+                <Button Click="Button_Click">
+                    <StackPanel>
+                        <TextBlock Text="3" HorizontalAlignment="Center"/>
+                        <TextBlock Text="DEF"/>
+                    </StackPanel>
+                </Button>
+                <Button Click="Button_Click">
+                    <StackPanel>
+                        <TextBlock Text="4" HorizontalAlignment="Center"/>
+                        <TextBlock Text="GHI"/>
+                    </StackPanel>
+                </Button>
+                <Button Click="Button_Click">
+                    <StackPanel>
+                        <TextBlock Text="5" HorizontalAlignment="Center"/>
+                        <TextBlock Text="JKL"/>
+                    </StackPanel>
+                </Button>
+                <Button Click="Button_Click">
+                    <StackPanel>
+                        <TextBlock Text="6" HorizontalAlignment="Center"/>
+                        <TextBlock Text="MNO"/>
+                    </StackPanel>
+                </Button>
+                <Button Click="Button_Click">
+                    <StackPanel>
+                        <TextBlock Text="7" HorizontalAlignment="Center"/>
+                        <TextBlock Text="PRS"/>
+                    </StackPanel>
+                </Button>
+                <Button Click="Button_Click">
+                    <StackPanel>
+                        <TextBlock Text="8" HorizontalAlignment="Center"/>
+                        <TextBlock Text="TUV"/>
+                    </StackPanel>
+                </Button>
+                <Button Click="Button_Click">
+                    <StackPanel>
+                        <TextBlock Text="9" HorizontalAlignment="Center"/>
+                        <TextBlock Text="WXYZ"/>
+                    </StackPanel>
+                </Button>
+                <Button Content="*" Click="Button_Click"/>
+                <Button>
+                    <Grid>
+                        <TextBlock Text="0" HorizontalAlignment="Center"/>
+                        <Label Content="{materialIcons:MaterialIconExt Size=40,Kind=KeyboardSpace}"/>
+                    </Grid>
+                </Button>
                 <Button Content="#"/>
             </UniformGrid>
         </Grid>
