@@ -22,6 +22,7 @@ namespace T9App
     {
         private Dictionary<char, string> t9Mappings = new Dictionary<char, string>
         {
+            {'1',"1" },
             {'2', "abc"},
             {'3', "def"},
             {'4', "ghi"},
@@ -91,6 +92,11 @@ namespace T9App
         {
             inputBuffer.Clear();
             UpdateInputDisplay();
+        }
+
+        private void txtInput_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            e.Handled = true;
         }
     }
 }

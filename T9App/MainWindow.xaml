@@ -18,7 +18,7 @@
             <RowDefinition Height="1*" />
             <RowDefinition Height="1.8*" />
         </Grid.RowDefinitions>
-        <TextBlock x:Name="txtInput" Grid.Column="0" Margin="10" FontSize="20" Background="White" TextWrapping="Wrap" />
+        <TextBox x:Name="txtInput" Grid.Column="0" Margin="10" FontSize="20" Background="White" TextWrapping="Wrap" PreviewKeyDown="txtInput_PreviewKeyDown"/>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*" />
