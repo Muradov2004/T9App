@@ -22,7 +22,6 @@ namespace T9App
     {
         private Dictionary<char, string> t9Mappings = new Dictionary<char, string>
         {
-            {'1',"1" },
             {'2', "abc"},
             {'3', "def"},
             {'4', "ghi"},
@@ -40,9 +39,19 @@ namespace T9App
             InitializeComponent();
         }
 
+        Button lastClickedButton = null!;
+        int clickCount = 1;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Button clickedButton = (Button)sender;
+            if (lastClickedButton == clickedButton) clickCount++;
+            else
+            {
+                lastClickedButton = clickedButton;
+                clickCount = 1;
+            }
+            if (clickCount > 4) clickCount = 1;
+
             string buttonText = clickedButton.Content.ToString()!;
 
 
@@ -52,7 +61,24 @@ namespace T9App
                 if (stackPanel.Children.Count > 0 && stackPanel.Children[0] is TextBlock textBlock)
                 {
                     // Access the Text property of the first TextBlock
-                    buttonText = textBlock.Text;
+                    switch (clickCount)
+                    {
+                        case 1:
+                            buttonText = textBlock.Text;
+                            break;
+                        case 2:
+                            inputBuffer.Remove(inputBuffer.Length - 1, 1);
+                            buttonText = t9Mappings[textBlock.Text[0]][0].ToString();
+                            break;
+                        case 3:
+                            inputBuffer.Remove(inputBuffer.Length - 1, 1);
+                            buttonText = t9Mappings[textBlock.Text[0]][1].ToString();
+                            break;
+                        case 4:
+                            inputBuffer.Remove(inputBuffer.Length - 1, 1);
+                            buttonText = t9Mappings[textBlock.Text[0]][2].ToString();
+                            break;
+                    }
 
                     inputBuffer.Append(buttonText);
                 }
@@ -94,9 +120,6 @@ namespace T9App
             UpdateInputDisplay();
         }
 
-        private void txtInput_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            e.Handled = true;
-        }
+        private void txtInput_PreviewKeyDown(object sender, KeyEventArgs e) => e.Handled = true;
     }
 }
