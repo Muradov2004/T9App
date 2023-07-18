@@ -101,7 +101,7 @@
                 <Button Click="Button_Click">
                     <StackPanel>
                         <TextBlock Text="7" HorizontalAlignment="Center"/>
-                        <TextBlock Text="PRS"/>
+                        <TextBlock Text="PQRS"/>
                     </StackPanel>
                 </Button>
                 <Button Click="Button_Click">
