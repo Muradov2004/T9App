@@ -33,6 +33,9 @@ public partial class MainWindow : Window
     Button lastClickedButton = null!;
     int clickCount = 1;
 
+
+    #region Button Check
+
     public void ZeroOrSpace(TextBlock textBlock)
     {
         if (clickCount > 2) clickCount = 1;
@@ -70,6 +73,28 @@ public partial class MainWindow : Window
         }
         return null!;
     }
+    public string TwoToEight(TextBlock textBlock)
+    {
+        if (clickCount > 4) clickCount = 1;
+        switch (clickCount)
+        {
+            case 1:
+                return textBlock.Text;
+            case 2:
+                inputBuffer.Remove(inputBuffer.Length - 1, 1);
+                return t9Mappings[textBlock.Text[0]][0].ToString();
+            case 3:
+                inputBuffer.Remove(inputBuffer.Length - 1, 1);
+                return t9Mappings[textBlock.Text[0]][1].ToString();
+            case 4:
+                inputBuffer.Remove(inputBuffer.Length - 1, 1);
+                return t9Mappings[textBlock.Text[0]][2].ToString();
+        }
+        return null!;
+    }
+    
+    #endregion
+
     private void Button_Click(object sender, RoutedEventArgs e)
     {
         Button clickedButton = (Button)sender;
@@ -84,10 +109,7 @@ public partial class MainWindow : Window
 
         if (clickedButton.Content is Grid grid)
         {
-            if (grid.Children.Count > 0 && grid.Children[0] is TextBlock textBlock)
-            {
-                ZeroOrSpace(textBlock);
-            }
+            if (grid.Children.Count > 0 && grid.Children[0] is TextBlock textBlock) ZeroOrSpace(textBlock);
         }
         else
         {
@@ -96,46 +118,18 @@ public partial class MainWindow : Window
             {
                 if (stackPanel.Children.Count > 0 && stackPanel.Children[0] is TextBlock textBlock)
                 {
-                    if (textBlock.Text != "9" && textBlock.Text != "7")
-                    {
-                        if (clickCount > 4) clickCount = 1;
-                        switch (clickCount)
-                        {
-                            case 1:
-                                buttonText = textBlock.Text;
-                                break;
-                            case 2:
-                                inputBuffer.Remove(inputBuffer.Length - 1, 1);
-                                buttonText = t9Mappings[textBlock.Text[0]][0].ToString();
-                                break;
-                            case 3:
-                                inputBuffer.Remove(inputBuffer.Length - 1, 1);
-                                buttonText = t9Mappings[textBlock.Text[0]][1].ToString();
-                                break;
-                            case 4:
-                                inputBuffer.Remove(inputBuffer.Length - 1, 1);
-                                buttonText = t9Mappings[textBlock.Text[0]][2].ToString();
-                                break;
-                        }
-                    }
-                    else
-                    {
-                        buttonText = SevenOrNine(textBlock);
-                    }
+                    if (textBlock.Text != "9" && textBlock.Text != "7") buttonText = TwoToEight(textBlock);
+                    else buttonText = SevenOrNine(textBlock);
                     inputBuffer.Append(buttonText);
                 }
             }
-            else
-                inputBuffer.Append(buttonText);
+            else inputBuffer.Append(buttonText);
         }
 
         UpdateInputDisplay();
     }
 
-    private void UpdateInputDisplay()
-    {
-        txtInput.Text = inputBuffer.ToString();
-    }
+    private void UpdateInputDisplay() => txtInput.Text = inputBuffer.ToString();
 
     private void DeleteButton_Click(object sender, RoutedEventArgs e)
     {
