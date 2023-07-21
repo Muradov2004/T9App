@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -105,12 +106,13 @@ public partial class MainWindow : Window
         }
         return null!;
     }
-    
+
     #endregion
 
     private void Button_Click(object sender, RoutedEventArgs e)
     {
         Button clickedButton = (Button)sender;
+        bool zeroClicked = false;
         if (lastClickedButton == clickedButton) clickCount++;
         else
         {
@@ -123,6 +125,7 @@ public partial class MainWindow : Window
         if (clickedButton.Content is Grid grid)
         {
             if (grid.Children.Count > 0 && grid.Children[0] is TextBlock textBlock) ZeroOrSpace(textBlock);
+            zeroClicked = true;
         }
         else
         {
@@ -140,6 +143,10 @@ public partial class MainWindow : Window
         }
 
         UpdateInputDisplay();
+        if (!zeroClicked)
+            Task.Run(() => { RecommendWord(); });
+
+
     }
 
     private void UpdateInputDisplay() => txtInput.Text = inputBuffer.ToString();
@@ -159,6 +166,29 @@ public partial class MainWindow : Window
     {
         inputBuffer.Clear();
         UpdateInputDisplay();
+    }
+
+    private void RecommendWord()
+    {
+        Dispatcher.Invoke(() =>
+        {
+
+            List<string> wordsWrited = txtInput.Text.Split(' ', '*', '#').ToList();
+            string recommended = Vocabulary.FirstOrDefault(v => v.StartsWith(wordsWrited.Last()))!;
+            if (recommended != null)
+            {
+
+                int lastSpaceIndex = txtInput.Text.LastIndexOf(wordsWrited.Last());
+
+                int len = txtInput.Text.Length;
+
+                txtInput.Text = txtInput.Text[..lastSpaceIndex] + recommended;
+
+                txtInput.Select(len, txtInput.Text.Length);
+
+                txtInput.Focus();
+            }
+        });
     }
 
     private void txtInput_PreviewKeyDown(object sender, KeyEventArgs e) => e.Handled = true;
