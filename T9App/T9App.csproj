@@ -11,4 +11,10 @@
     <PackageReference Include="Material.Icons.WPF" Version="2.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Vocabulary.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

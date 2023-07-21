@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,11 +26,22 @@ public partial class MainWindow : Window
     };
 
     private StringBuilder inputBuffer = new();
+    private List<string> Vocabulary = new();
 
     public MainWindow()
     {
         InitializeComponent();
+        StartVocabulary();
+
     }
+
+    private void StartVocabulary()
+    {
+        string text = File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), "Vocabulary.txt"));
+        Vocabulary = text.Split("\r\n").ToList();
+    }
+
+
 
     Button lastClickedButton = null!;
     int clickCount = 1;
