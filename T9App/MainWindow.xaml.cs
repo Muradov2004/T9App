@@ -31,11 +31,11 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-        StartVocabulary();
+        StartFillVocabulary();
 
     }
 
-    private void StartVocabulary()
+    private void StartFillVocabulary()
     {
         string text = File.ReadAllText(Path.Combine(Directory.GetCurrentDirectory(), "Vocabulary.txt"));
         Vocabulary = text.Split("\r\n").ToList();

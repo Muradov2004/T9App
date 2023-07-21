@@ -43,7 +43,7 @@
                     <Button Content="{materialIcons:MaterialIconExt Kind=KeyboardArrowUp}"/>
                     <Rectangle/>
                     <Button Content="{materialIcons:MaterialIconExt Kind=KeyboardArrowLeft}"/>
-                    <Rectangle/>
+                    <Button Content="{materialIcons:MaterialIconExt Kind=Message}" Margin="5"/>
                     <Button Content="{materialIcons:MaterialIconExt Kind=KeyboardArrowRight}"/>
                     <Rectangle/>
                     <Button Content="{materialIcons:MaterialIconExt Kind=KeyboardArrowDown}"/>
